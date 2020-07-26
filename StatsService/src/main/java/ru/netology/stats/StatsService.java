@@ -1,5 +1,6 @@
 package ru.netology.stats;
 
+// Сумму всех продаж
 public class StatsService {
     public int calculateSum(int[] sales) {
         int sum = 0;
@@ -11,6 +12,7 @@ public class StatsService {
     }
 
 
+// Средняя сумма продаж в месяц
     public int calculateAverageSales(int[] sales) {
         int months = 0;
         int sum = 0;
@@ -22,6 +24,8 @@ public class StatsService {
         return averageSum;
     }
 
+
+// Номер месяца, в котором был пик продаж
     public int findMax(int[] sales) {
         int currentMax = sales[0];  // берём за точку отсчёта первый элемент
         int index = 0;
@@ -42,22 +46,34 @@ public class StatsService {
         return month;
     }
 
+
+// Номер месяца, в котором был минимум продаж
     public int findMin(int[] sales) {
-        int currentMin = sales[0];
+        // считаем средне-месячнуюю сумму продаж
+        int months = 0;
+        int sum = 0;
+        for (int item : sales) {
+            months += 1;
+            sum += item;
+        }
+        int averageSum = sum / months;
+
+        // ищем минимальные суммы
         int index = 0;
         int month = 0;
 
         for (int sale : sales) {
             index = index + 1;
 
-            if (currentMin > sale) {
-                currentMin = sale;
+            if (sale <= averageSum) {
                 month = index;
             }
         }
         return month;
     }
 
+
+// Кол-во месяцев, в которых продажи были ниже среднего
     public int calculateBelowAverageSales(int[] sales) {
         int months = 0;
         int sum = 0;
@@ -76,6 +92,8 @@ public class StatsService {
         return index;
     }
 
+
+// Кол-во месяцев, в которых продажи были выше среднего
     public int calculateAboveAverageSales(int[] sales) {
         int months = 0;
         int sum = 0;

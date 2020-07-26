@@ -55,7 +55,7 @@ class StatsServiceTest {
         StatsService service = new StatsService();
         int actual = service.findMin(sales);
 
-        int expected = 9;
+        int expected = 11;
         assertEquals(expected, actual);
 
         System.out.println("Минимальная продажа в " + actual + " месяце");
